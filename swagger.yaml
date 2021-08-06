@@ -1,0 +1,300 @@
+tags:
+- name: users
+  description: users API
+- name: hobbies
+  description: hobbies API
+
+paths:
+# [GET] users
+  /users:
+    get:
+      tags:
+      - users
+      summary: Find All Users
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] users
+    post:
+      tags:
+      - users
+      summary: Add User
+      parameters:
+      - name: body
+        in: body
+        description: user Data
+        required: true
+        schema:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [POST] users/hobbies
+  /users/hobbies:
+    post:
+      tags:
+      - users
+      summary: Add Hobbies to the User
+      parameters:
+      - name: userHobbyRef
+        in: body
+        description: 'User Id, Hobby Id XREF'
+        required: true
+        schema:
+          type: object
+          required:
+            - userId
+            - hobbyId
+          properties:
+            userId:
+              type: string
+            hobbyId:
+              type: string
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] users/id
+  /users/{id}:
+    get:
+      tags:
+      - users
+      summary: Find User By Id
+      parameters:
+      - name: id
+        in: path
+        description: User Id
+        required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] users/id
+    put:
+      tags:
+      - users
+      summary: Update User By Id
+      parameters:
+      - name: id
+        in: path
+        description: user Id
+        required: true
+      - name: body
+        in: body
+        description: user Data
+        required: true
+        schema:
+          type: object
+          required:
+            - name
+          properties:
+            name:
+              type: string
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] users/id
+    delete:
+      tags:
+      - users
+      summary: Delete User By Id
+      parameters:
+      - name: id
+        in: path
+        description: user Id
+        required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+
+# [GET] hobbies
+  /hobbies:
+    get:
+      tags:
+      - hobbies
+      summary: Find All Hobbies
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+
+# [POST] hobbies
+    post:
+      tags:
+      - hobbies
+      summary: Add Hobby
+      parameters:
+      - name: body
+        in: body
+        description: hobby Data
+        required: true
+        schema:
+          type: object
+          required:
+            - name
+            - passionLevel
+            - year
+          properties:
+            name:
+              type: string
+            passionLevel:
+              type: string
+            year:
+              type: number
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [GET] hobbies/id
+  /hobbies/{id}:
+    get:
+      tags:
+      - hobbies
+      summary: Find Hobby By Id
+      parameters:
+      - name: id
+        in: path
+        description: Hobby Id
+        required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [PUT] hobbies/id
+    put:
+      tags:
+      - hobbies
+      summary: Update Hobby By Id
+      parameters:
+      - name: id
+        in: path
+        description: hobby Id
+        required: true
+      - name: body
+        in: body
+        description: hobby Data
+        required: true
+        schema:
+          type: object
+          required:
+          properties:
+            name:
+              type: string
+            passionLevel:
+              type: string
+            year:
+              type: number
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# [DELETE] hobbies/id
+    delete:
+      tags:
+      - hobbies
+      summary: Delete Hobby By Id
+      parameters:
+      - name: id
+        in: path
+        description: hobby Id
+        required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+
+# definitions
+definitions:
+  users:
+    type: object
+    required:
+        - name
+    properties:
+      id:
+        description: user Id
+      name:
+        type: string
+        description: user Name
+      hobbies:
+        type: array
+        items:
+          type: string
+        description: user Hobbies
+  hobbies:
+    type: object
+    required:
+        - name
+        - passionLevel
+        - year
+    properties:
+      id:
+        description: Hobby Id
+      name:
+        type: string
+        description: hobby Name
+      passionLevel:
+        type: string
+        description: hobby Passion Level
+      year:
+        type: number
+        description: hobby Year
+      
+
+schemes:
+ - https
+ - http
