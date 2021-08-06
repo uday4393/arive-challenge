@@ -41,8 +41,8 @@ It is accessible at http://localhost:3000/api-docs/
 
 User - { name, hobbies }, Hobbies - { name, passionLevel, year }
 
-## Demo
-![alt text](https://github.com/uday4393/arive-challenge/blob/master/demo/arivedemo.gif?raw=true)
+<!-- ## Demo
+![alt text](https://github.com/uday4393/arive-challenge/blob/master/demo/arivedemo.gif?raw=true) -->
 
 ## Screenshots 
 ![alt text](https://github.com/uday4393/arive-challenge/blob/master/demo/arive1.png?raw=true)
